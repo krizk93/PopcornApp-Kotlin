@@ -1,0 +1,2 @@
+rootProject.name = "PopcornApp"
+include ':app'
