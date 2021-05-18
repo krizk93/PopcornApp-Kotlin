@@ -1,15 +1,15 @@
 package com.krizk.popcornapp.home
 
-import android.content.pm.ModuleInfo
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.krizk.popcornapp.BuildConfig
 import com.krizk.popcornapp.network.Movies
 import com.krizk.popcornapp.network.MoviesApi
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class HomeViewModel : ViewModel() {
 
@@ -24,21 +24,21 @@ class HomeViewModel : ViewModel() {
 
     private fun getMovies() {
 
-        MoviesApi.retrofitService.getMovies("popular", BuildConfig.ApiKey)
-            .enqueue(object :
-                Callback<Movies> {
+        CoroutineScope(Dispatchers.IO).launch {
+            val response = MoviesApi.retrofitService.getMovies("popular", BuildConfig.ApiKey)
+            withContext(Dispatchers.Main) {
+                try {
+                    if (response.isSuccessful) {
 
-                override fun onFailure(call: Call<Movies>, t: Throwable) {
+                        val allMovies: List<Movies.Result> = response.body()?.results ?: emptyList()
+                        _response.value = allMovies[0].title
+                    }
 
-                    _response.value = "Failure: " + t.message
+                } catch (e: Throwable) {
+
+                    _response.value = "Error:" + e.message
                 }
-
-                override fun onResponse(call: Call<Movies>, response: Response<Movies>) {
-
-                    val allMovies: List<Movies.Result> = response.body()?.results ?: emptyList()
-                    _response.value = allMovies[0].title
-                }
-
-            })
+            }
+        }
     }
 }
