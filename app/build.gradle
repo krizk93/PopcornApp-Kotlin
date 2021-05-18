@@ -20,9 +20,18 @@ android {
     }
 
     buildTypes {
+
+        debug {
+
+            // API key is stored in BuildConfig, not published via Source Control
+            buildConfigField 'String', "ApiKey", TMDB_API_KEY
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            // API key is stored in BuildConfig, not published via Source Control
+            buildConfigField 'String', "ApiKey", TMDB_API_KEY
         }
     }
     compileOptions {
@@ -56,4 +65,11 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 
+    // Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
+
+    // Moshi
+    implementation "com.squareup.moshi:moshi:$moshi_version"
+    implementation "com.squareup.moshi:moshi-kotlin:$moshi_version"
 }
