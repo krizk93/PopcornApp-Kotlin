@@ -1,5 +1,7 @@
 package com.krizk.popcornapp.home
 
+import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -10,13 +12,14 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import kotlin.math.log
 
 class HomeViewModel : ViewModel() {
 
-    private val _response = MutableLiveData<String>()
+    private val _allMovies = MutableLiveData<List<Movies.Result>>()
 
-    val response: LiveData<String>
-        get() = _response
+    val allMovies: LiveData<List<Movies.Result>>
+        get() = _allMovies
 
     init {
         getMovies()
@@ -30,13 +33,12 @@ class HomeViewModel : ViewModel() {
                 try {
                     if (response.isSuccessful) {
 
-                        val allMovies: List<Movies.Result> = response.body()?.results ?: emptyList()
-                        _response.value = allMovies[0].title
+                        _allMovies.value = response.body()?.results ?: emptyList()
                     }
 
                 } catch (e: Throwable) {
 
-                    _response.value = "Error:" + e.message
+                    Log.e("network call", "Error: ", e)
                 }
             }
         }

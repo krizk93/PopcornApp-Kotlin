@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.krizk.popcornapp.databinding.FragmentHomeBinding
 
@@ -30,6 +31,15 @@ class HomeFragment : Fragment() {
 
         // Giving the binding access to the OverviewViewModel
         binding.viewModel = viewModel
+
+        val adapter = MovieListAdapter()
+        binding.moviesRecyclerView.adapter = adapter
+
+        viewModel.allMovies.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                adapter.submitList(it)
+            }
+        })
 
         return binding.root
     }
