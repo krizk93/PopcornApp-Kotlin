@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">PopcornApp</string>
-    <string name="poster_image">Poster Image</string>
+    <string name="poster_image_description">Poster Image</string>
 </resources>

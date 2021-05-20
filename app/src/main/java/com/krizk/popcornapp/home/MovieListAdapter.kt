@@ -28,7 +28,8 @@ class MovieListAdapter :
 
         fun bind(item: Movies.Result) {
 
-            binding.posterTitleTextview.text = item.title
+            binding.movie = item
+            binding.executePendingBindings()
 
         }
 

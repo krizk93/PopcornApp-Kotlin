@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.krizk.popcornapp.databinding.FragmentHomeBinding
 
@@ -35,7 +34,7 @@ class HomeFragment : Fragment() {
         val adapter = MovieListAdapter()
         binding.moviesRecyclerView.adapter = adapter
 
-        viewModel.allMovies.observe(viewLifecycleOwner, Observer {
+        viewModel.allMovies.observe(viewLifecycleOwner, {
             it?.let {
                 adapter.submitList(it)
             }

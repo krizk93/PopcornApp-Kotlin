@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="movie"
             type="com.krizk.popcornapp.network.Movies.Result" />
@@ -12,7 +13,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="320dp"
+        android:layout_height="350dp"
         android:layout_margin="4dp">
 
 
@@ -28,12 +29,12 @@
                 android:layout_marginLeft="1dp"
                 android:layout_marginRight="1dp"
                 android:adjustViewBounds="true"
-                android:contentDescription="@string/poster_image"
+                android:contentDescription="@string/poster_image_description"
                 android:scaleType="fitXY"
+                app:imageUrl="@{movie.posterPath}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@android:drawable/ic_menu_gallery" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/poster_title_textview"
@@ -43,6 +44,7 @@
                 android:layout_marginBottom="2dp"
                 android:fontFamily="sans-serif-condensed"
                 android:gravity="center"
+                android:text="@{movie.title}"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
