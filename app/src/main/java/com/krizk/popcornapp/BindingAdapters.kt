@@ -9,9 +9,9 @@ import com.bumptech.glide.Glide
 fun bindImage(imageView: ImageView, imageUrl: String?) {
 
     imageUrl?.let {
-        val imageUri = Uri.parse("https://image.tmdb.org/t/p/")
+        val imageUri = Uri.parse(imageView.context.getString(R.string.base_image_url))
             .buildUpon()
-            .appendPath("w500")
+            .appendPath(imageView.context.getString(R.string.image_size_500))
             .appendPath(imageUrl.replace("/",""))
             .build()
 
