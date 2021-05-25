@@ -1,7 +1,6 @@
 package com.krizk.popcornapp.home
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -35,7 +34,8 @@ class HomeFragment : Fragment() {
 
         val adapter = MovieListAdapter(MoviesListener { movieId ->
 
-            val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(movieId.toString())
+            val action =
+                HomeFragmentDirections.actionHomeFragmentToDetailFragment(movieId.toString())
             findNavController().navigate(action)
         })
         binding.moviesRecyclerView.adapter = adapter

@@ -2,6 +2,7 @@ package com.krizk.popcornapp.network
 
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import retrofit2.Call
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -23,6 +24,7 @@ private val retrofit =
 
 
 interface ApiService {
+
     @GET("/3/movie/{category}")
     suspend fun getMovies(
         @Path("category") category: String,
@@ -31,9 +33,9 @@ interface ApiService {
 
     @GET("/3/movie/{movie_id}")
     suspend fun getMovieDetails(
-        @Path("movie_id") category: String,
+        @Path("movie_id") movieID: String,
         @Query("api_key") apiKey: String
-    )
+    ): Response<MovieDetails>
 }
 
 object MoviesApi {
