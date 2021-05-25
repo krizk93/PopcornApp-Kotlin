@@ -3,4 +3,7 @@
     <string name="poster_image_description">Poster Image</string>
     <string name="base_image_url">https://image.tmdb.org/t/p/</string>
     <string name="image_size_500">w500</string>
+    <string name="rating_label" translatable="true">Rating</string>
+    <string name="release_date" translatable="true">Release Date</string>
+    <string name="original_language" translatable="true">Original Language</string>
 </resources>
