@@ -9,12 +9,16 @@
         <variable
             name="movie"
             type="com.krizk.popcornapp.network.Movies.Result" />
+        <variable
+            name="clickListener"
+            type="com.krizk.popcornapp.home.MoviesListener" />
     </data>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="350dp"
-        android:layout_margin="4dp">
+        android:layout_margin="4dp"
+        android:onClick="@{() -> clickListener.onClick(movie)}">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout

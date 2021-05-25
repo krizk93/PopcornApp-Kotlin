@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.krizk.popcornapp.databinding.MovieItemViewBinding
 import com.krizk.popcornapp.network.Movies
 
-class MovieListAdapter :
+class MovieListAdapter(private val clickListener: MoviesListener) :
     ListAdapter<Movies.Result, MovieListAdapter.MoviesViewHolder>(MovieListDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoviesViewHolder {
@@ -19,16 +19,17 @@ class MovieListAdapter :
     override fun onBindViewHolder(holder: MoviesViewHolder, position: Int) {
 
         val item = getItem(position)
-        holder.bind(item)
+        holder.bind(item, clickListener)
     }
 
 
     class MoviesViewHolder private constructor(private val binding: MovieItemViewBinding) : RecyclerView.ViewHolder(binding.root) {
 
 
-        fun bind(item: Movies.Result) {
+        fun bind(item: Movies.Result, clickListener: MoviesListener) {
 
             binding.movie = item
+            binding.clickListener = clickListener
             binding.executePendingBindings()
 
         }
@@ -58,4 +59,9 @@ class MovieListDiffCallback : DiffUtil.ItemCallback<Movies.Result>() {
         return oldItem == newItem
     }
 
+}
+
+class MoviesListener(val clickListener: (movieId: Int) -> Unit) {
+
+    fun onClick(movie: Movies.Result) = clickListener(movie.id)
 }
