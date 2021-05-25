@@ -7,8 +7,8 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.krizk.popcornapp.home.HomeFragment"
-        android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
+        android:label="All Movies"
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_detailFragment"
             app:destination="@id/detailFragment" />
@@ -16,7 +16,7 @@
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.krizk.popcornapp.detail.DetailFragment"
-        android:label="fragment_detail"
+        android:label="Movie Details"
         tools:layout="@layout/fragment_detail">
         <argument
             android:name="movie_id"

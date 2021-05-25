@@ -10,7 +10,7 @@
             type="com.krizk.popcornapp.detail.DetailViewModel" />
     </data>
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:id="@+id/background_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -143,5 +143,5 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 </layout>
