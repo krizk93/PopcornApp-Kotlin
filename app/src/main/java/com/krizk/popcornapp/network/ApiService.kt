@@ -28,6 +28,12 @@ interface ApiService {
         @Path("category") category: String,
         @Query("api_key") apiKey: String
     ): Response<Movies>
+
+    @GET("/3/movie/{movie_id}")
+    suspend fun getMovieDetails(
+        @Path("movie_id") category: String,
+        @Query("api_key") apiKey: String
+    )
 }
 
 object MoviesApi {
