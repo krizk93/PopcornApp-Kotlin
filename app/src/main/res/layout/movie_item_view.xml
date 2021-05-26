@@ -16,7 +16,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="350dp"
+        android:layout_height="300dp"
         android:layout_margin="4dp"
         android:onClick="@{() -> clickListener.onClick(movie)}">
 
@@ -29,7 +29,7 @@
             <ImageView
                 android:id="@+id/poster_imageview"
                 android:layout_width="match_parent"
-                android:layout_height="280dp"
+                android:layout_height="200dp"
                 android:layout_marginLeft="1dp"
                 android:layout_marginRight="1dp"
                 android:adjustViewBounds="true"

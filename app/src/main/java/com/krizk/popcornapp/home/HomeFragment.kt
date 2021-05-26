@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import com.krizk.popcornapp.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
@@ -31,6 +32,9 @@ class HomeFragment : Fragment() {
 
         // Giving the binding access to the OverviewViewModel
         binding.viewModel = viewModel
+
+        val manager = GridLayoutManager(activity, 3)
+        binding.moviesRecyclerView.layoutManager = manager
 
         val adapter = MovieListAdapter(MoviesListener { movieId ->
 
