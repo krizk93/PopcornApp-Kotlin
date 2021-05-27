@@ -1,11 +1,11 @@
-package com.krizk.popcornapp.home
+package com.krizk.popcornapp.home.movieList
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.krizk.popcornapp.databinding.MovieItemViewBinding
+import com.krizk.popcornapp.databinding.ViewMovieItemBinding
 import com.krizk.popcornapp.network.Movies
 
 class MovieListAdapter(private val clickListener: MoviesListener) :
@@ -23,7 +23,8 @@ class MovieListAdapter(private val clickListener: MoviesListener) :
     }
 
 
-    class MoviesViewHolder private constructor(private val binding: MovieItemViewBinding) : RecyclerView.ViewHolder(binding.root) {
+    class MoviesViewHolder private constructor(private val binding: ViewMovieItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
 
         fun bind(item: Movies.Result, clickListener: MoviesListener) {
@@ -38,11 +39,11 @@ class MovieListAdapter(private val clickListener: MoviesListener) :
             fun from(parent: ViewGroup): MoviesViewHolder {
 
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val binding = MovieItemViewBinding.inflate(layoutInflater, parent, false)
+                val binding = ViewMovieItemBinding.inflate(layoutInflater, parent, false)
                 return MoviesViewHolder(binding)
             }
 
-    }
+        }
 
     }
 }

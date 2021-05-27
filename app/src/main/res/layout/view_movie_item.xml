@@ -11,7 +11,7 @@
             type="com.krizk.popcornapp.network.Movies.Result" />
         <variable
             name="clickListener"
-            type="com.krizk.popcornapp.home.MoviesListener" />
+            type="com.krizk.popcornapp.home.movieList.MoviesListener" />
     </data>
 
     <androidx.cardview.widget.CardView

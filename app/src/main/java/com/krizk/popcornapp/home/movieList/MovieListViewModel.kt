@@ -1,4 +1,4 @@
-package com.krizk.popcornapp.home
+package com.krizk.popcornapp.home.movieList
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 
-class MovieListViewModel : ViewModel() {
+class MovieListViewModel(category: String) : ViewModel() {
 
     private val _allMovies = MutableLiveData<List<Movies.Result>>()
 
@@ -21,13 +21,14 @@ class MovieListViewModel : ViewModel() {
         get() = _allMovies
 
     init {
-        getMovies()
+        getMovies(category)
     }
 
-    private fun getMovies() {
+    private fun getMovies(category: String) {
+
 
         CoroutineScope(Dispatchers.IO).launch {
-            val response = MoviesApi.retrofitService.getMovies("popular", BuildConfig.ApiKey)
+            val response = MoviesApi.retrofitService.getMovies(category, BuildConfig.ApiKey)
             withContext(Dispatchers.Main) {
                 try {
                     if (response.isSuccessful) {

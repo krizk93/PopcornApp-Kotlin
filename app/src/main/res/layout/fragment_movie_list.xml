@@ -8,14 +8,14 @@
 
         <variable
             name="viewModel"
-            type="com.krizk.popcornapp.home.MovieListViewModel" />
+            type="com.krizk.popcornapp.home.movieList.MovieListViewModel" />
     </data>
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".home.MovieListFragment">
+        tools:context=".home.movieList.MovieListFragment">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/movies_recycler_view"

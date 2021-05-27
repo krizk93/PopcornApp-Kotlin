@@ -3,16 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/movieListFragment">
-    <fragment
-        android:id="@+id/movieListFragment"
-        android:name="com.krizk.popcornapp.home.MovieListFragment"
-        android:label="All Movies"
-        tools:layout="@layout/fragment_movie_list">
-        <action
-            android:id="@+id/action_homeFragment_to_detailFragment"
-            app:destination="@id/movieDetailFragment" />
-    </fragment>
+    app:startDestination="@id/viewPagerFragment">
     <fragment
         android:id="@+id/movieDetailFragment"
         android:name="com.krizk.popcornapp.detail.MovieDetailFragment"
@@ -21,5 +12,14 @@
         <argument
             android:name="movie_id"
             app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/viewPagerFragment"
+        android:name="com.krizk.popcornapp.home.ViewPagerFragment"
+        android:label="All Movies"
+        tools:layout="@layout/fragment_view_pager">
+        <action
+            android:id="@+id/action_viewPagerFragment_to_movieDetailFragment"
+            app:destination="@id/movieDetailFragment" />
     </fragment>
 </navigation>
