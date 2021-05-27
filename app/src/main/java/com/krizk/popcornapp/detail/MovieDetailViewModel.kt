@@ -12,7 +12,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class DetailViewModel(movieID: String) : ViewModel() {
+class MovieDetailViewModel(movieID: String) : ViewModel() {
 
     private val _movieDetails = MutableLiveData<MovieDetails>()
 

@@ -3,21 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/movieListFragment">
     <fragment
-        android:id="@+id/homeFragment"
-        android:name="com.krizk.popcornapp.home.HomeFragment"
+        android:id="@+id/movieListFragment"
+        android:name="com.krizk.popcornapp.home.MovieListFragment"
         android:label="All Movies"
-        tools:layout="@layout/fragment_home">
+        tools:layout="@layout/fragment_movie_list">
         <action
             android:id="@+id/action_homeFragment_to_detailFragment"
-            app:destination="@id/detailFragment" />
+            app:destination="@id/movieDetailFragment" />
     </fragment>
     <fragment
-        android:id="@+id/detailFragment"
-        android:name="com.krizk.popcornapp.detail.DetailFragment"
+        android:id="@+id/movieDetailFragment"
+        android:name="com.krizk.popcornapp.detail.MovieDetailFragment"
         android:label="Movie Details"
-        tools:layout="@layout/fragment_detail">
+        tools:layout="@layout/fragment_movie_detail">
         <argument
             android:name="movie_id"
             app:argType="string" />

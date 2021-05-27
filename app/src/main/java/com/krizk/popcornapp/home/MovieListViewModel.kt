@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 
-class HomeViewModel : ViewModel() {
+class MovieListViewModel : ViewModel() {
 
     private val _allMovies = MutableLiveData<List<Movies.Result>>()
 

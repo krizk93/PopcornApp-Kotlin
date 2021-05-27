@@ -8,15 +8,15 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import com.krizk.popcornapp.databinding.FragmentHomeBinding
+import com.krizk.popcornapp.databinding.FragmentMovieListBinding
 
-class HomeFragment : Fragment() {
+class MovieListFragment : Fragment() {
 
     /**
-     * Lazily initialize [HomeViewModel].
+     * Lazily initialize [MovieListViewModel].
      */
-    private val viewModel: HomeViewModel by lazy {
-        ViewModelProvider(this).get(HomeViewModel::class.java)
+    private val viewModel: MovieListViewModel by lazy {
+        ViewModelProvider(this).get(MovieListViewModel::class.java)
     }
 
     override fun onCreateView(
@@ -25,7 +25,7 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        val binding = FragmentHomeBinding.inflate(inflater)
+        val binding = FragmentMovieListBinding.inflate(inflater)
 
         // Allows Data Binding to Observe LiveData with the lifecycle of this Fragment
         binding.lifecycleOwner = this
@@ -39,7 +39,7 @@ class HomeFragment : Fragment() {
         val adapter = MovieListAdapter(MoviesListener { movieId ->
 
             val action =
-                HomeFragmentDirections.actionHomeFragmentToDetailFragment(movieId.toString())
+                MovieListFragmentDirections.actionHomeFragmentToDetailFragment(movieId.toString())
             findNavController().navigate(action)
         })
         binding.moviesRecyclerView.adapter = adapter
