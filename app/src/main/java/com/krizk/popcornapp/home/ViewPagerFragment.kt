@@ -9,17 +9,19 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.krizk.popcornapp.databinding.FragmentViewPagerBinding
 import com.krizk.popcornapp.home.movieList.MovieListFragment
 
-enum class MovieCategories (val title: String) {
-    Popular ("Popular Movies"),
-    Top_rated ("Top Rated Movies")
+enum class MovieCategories(val title: String) {
+    Popular("Popular Movies"),
+    Top_rated("Top Rated Movies")
 }
 
 class ViewPagerFragment : Fragment() {
 
-    private val tabFragments = Array(MovieCategories.values().size) { i ->
-        MovieListFragment.newInstance(
-            MovieCategories.values()[i].toString().lowercase()
-        )
+    private val tabFragments by lazy {
+        Array(MovieCategories.values().size) {
+            MovieListFragment.newInstance(
+                MovieCategories.values()[it].toString().lowercase()
+            )
+        }
     }
 
     override fun onCreateView(
@@ -29,7 +31,8 @@ class ViewPagerFragment : Fragment() {
 
         val binding = FragmentViewPagerBinding.inflate(inflater)
 
-        val adapter = ViewPagerAdapter(tabFragments, requireActivity().supportFragmentManager, lifecycle)
+        val adapter =
+            ViewPagerAdapter(tabFragments, requireActivity().supportFragmentManager, lifecycle)
 
         binding.viewPager.adapter = adapter
 
