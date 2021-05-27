@@ -4,13 +4,11 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.krizk.popcornapp.BuildConfig
 import com.krizk.popcornapp.network.Movies
 import com.krizk.popcornapp.network.MoviesApi
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 
 class MovieListViewModel(category: String) : ViewModel() {
@@ -27,19 +25,20 @@ class MovieListViewModel(category: String) : ViewModel() {
     private fun getMovies(category: String) {
 
 
-        CoroutineScope(Dispatchers.IO).launch {
-            val response = MoviesApi.retrofitService.getMovies(category, BuildConfig.ApiKey)
-            withContext(Dispatchers.Main) {
-                try {
-                    if (response.isSuccessful) {
+        viewModelScope.launch {
 
-                        _allMovies.value = response.body()?.results ?: emptyList()
-                    }
+            try {
+                val response = MoviesApi.retrofitService.getMovies(category, BuildConfig.ApiKey)
 
-                } catch (e: Throwable) {
-
-                    Log.e("network call", "Error: ", e)
+                if (response.isSuccessful) {
+                    _allMovies.value = response.body()?.results ?: emptyList()
+                } else {
+                    Log.e("MovieListViewModel", response.errorBody().toString())
                 }
+
+            } catch (e: Exception) {
+
+                Log.e("MovieListViewModel", "Error: ", e)
             }
         }
     }
