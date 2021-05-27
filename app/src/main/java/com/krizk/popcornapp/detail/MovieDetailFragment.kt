@@ -12,7 +12,7 @@ import com.krizk.popcornapp.databinding.FragmentMovieDetailBinding
 class MovieDetailFragment : Fragment() {
 
     private lateinit var viewModel: MovieDetailViewModel
-    private lateinit var viewModelFactory: DetailViewModelFactory
+    private lateinit var viewModelFactory: MovieDetailViewModelFactory
 
     private val args: MovieDetailFragmentArgs by navArgs()
 
@@ -23,7 +23,7 @@ class MovieDetailFragment : Fragment() {
     ): View {
         val binding = FragmentMovieDetailBinding.inflate(inflater)
 
-        viewModelFactory = DetailViewModelFactory(args.movieId)
+        viewModelFactory = MovieDetailViewModelFactory(args.movieId)
         viewModel = ViewModelProvider(this, viewModelFactory).get(MovieDetailViewModel::class.java)
 
         binding.lifecycleOwner = this
